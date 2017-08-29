@@ -17,8 +17,8 @@ public class ValidateData {
 
         Boolean correctFirstNumber, correctSecondNumber, correctOperator;
 
-        correctFirstNumber = validateIfDouble(collectData.getDataCollector(0), 0);
         correctOperator = validateOperator(collectData.getDataCollector(1));
+        correctFirstNumber = validateFirstNumber(collectData.getDataCollector(0));
         correctSecondNumber = validateSecondNumber(collectData.getDataCollector(2));
 
         if (correctFirstNumber && correctOperator && correctSecondNumber) {
@@ -53,6 +53,17 @@ public class ValidateData {
         }
     }
 
+    private Boolean validateFirstNumber(String maybeNumber) {
+        if (validateIfDouble(maybeNumber, 0)) {
+            switch (opetatorsName) {
+                case ROOT:
+                    return validateRootNumber(tmpNumbers[0]);
+            }
+            return true;
+        } else return false;
+    }
+
+
     private Boolean validateSecondNumber(String maybeNumber) {
         if (validateIfDouble(maybeNumber, 1)) {
             switch (opetatorsName) {
@@ -61,7 +72,7 @@ public class ValidateData {
                 case POWER:
                     return validatePower(tmpNumbers[1]);
                 case ROOT:
-                    return validateRoot(tmpNumbers[1]);
+                    return validateRootDegree(tmpNumbers[1]);
             }
             return true;
         } else return false;
@@ -82,8 +93,15 @@ public class ValidateData {
         return true;
     }
 
-    private Boolean validateRoot(Double tmp) {
+    private Boolean validateRootDegree(Double tmp) {
         if (tmp <= 0 || tmp != Math.floor(tmp)) {
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean validateRootNumber(Double tmp) {
+        if (tmp <= 0) {
             return false;
         }
         return true;

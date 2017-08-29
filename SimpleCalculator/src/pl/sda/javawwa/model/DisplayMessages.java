@@ -18,9 +18,9 @@ public class DisplayMessages {
 
     public static String warningMessage = "Podane przez Ciebie dane są nieprawidłowe!";
 
-    public static String firstentry = "Wprowadź pierwszą liczbę";
+    public static String firstentry = "Wprowadź pierwszą liczbę (dla pierwiastka tą z której chcesz wyciągnąć pierwiastek, dla potęgi tą którą chcesz podnieść do potęgi)";
     public static String operator = "Wprowadź operator (q aby zakończyć)";
-    public static String secondentry = "Wprowadź drugą liczbę";
+    public static String secondentry = "Wprowadź drugą liczbę (dla pierwiastka stopień pierwiastka, dla potęgi wykładnik potęgi)";
 
     public static String continueOrNot = "Aby zakończyć naciśnij q, aby kontynuować dowolny klawisz ";
     public static String byebye = "Dzięki za obliczenia, do zobaczenia.";
