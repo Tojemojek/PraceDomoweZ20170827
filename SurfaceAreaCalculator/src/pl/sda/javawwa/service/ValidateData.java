@@ -4,6 +4,14 @@ public class ValidateData {
 
     private final Integer ERRROR_CODE = -1;
 
+
+    public Boolean shouldIContinue(String validowane) {
+        if (validowane.equals("q")) {
+            return false;
+        }
+        return true;
+    }
+
     public Integer validateChosenOption(String validowane) {
         Integer tmp;
 
@@ -29,6 +37,5 @@ public class ValidateData {
             return (double) ERRROR_CODE;
         }
     }
-
 }
 

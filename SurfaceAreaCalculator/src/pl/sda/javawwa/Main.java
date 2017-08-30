@@ -10,19 +10,20 @@ import java.util.List;
 
 public class Main {
 
-    static List<Shape> shapes = new ArrayList<>();
+    private static List<Shape> shapes = new ArrayList<>();
 
     public static void main(String[] args) {
-
         CreateShape makeShape = new CreateShape();
 
-
-
-        makeShape.takeDataAndMakeShape(shapes);
-
-
-
-
-
+        do {
+            makeShape.takeDataAndMakeShape(shapes);
+            if (makeShape.getDoAgain()) {
+                System.out.println(shapes.get(shapes.size() - 1));
+            } else {
+                System.out.println("Dziękuję za użycie programu, twoje obliczenia:");
+                shapes.forEach(System.out::println);
+            }
+        }
+        while (makeShape.getDoAgain());
     }
 }

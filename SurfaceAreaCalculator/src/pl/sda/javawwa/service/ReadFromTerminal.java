@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class ReadFromTerminal {
 
     private Scanner scanner = new Scanner(System.in);
-    private String scannerData;
 
     public String readOneLine() {
+        String scannerData;
         do {
-            scannerData = scanner.nextLine();
+            scannerData = scanner.nextLine().replaceAll(",",".");
         }
         while (scannerData == null);
         return scannerData;
