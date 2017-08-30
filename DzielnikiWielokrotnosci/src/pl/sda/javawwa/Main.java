@@ -22,8 +22,8 @@ public class Main {
         Long nwwTemp;
         Integer liczPierszeDo = null;
 
-        RozlozoneNaCzynnikiPierwsze liczbaA = new RozlozoneNaCzynnikiPierwsze(1566);
-        RozlozoneNaCzynnikiPierwsze liczbaB = new RozlozoneNaCzynnikiPierwsze(11564);
+        RozlozoneNaCzynnikiPierwsze liczbaA = new RozlozoneNaCzynnikiPierwsze(165516513);
+        RozlozoneNaCzynnikiPierwsze liczbaB = new RozlozoneNaCzynnikiPierwsze(165161656);
 
         if (liczbaA.getWartosc() > liczbaB.getWartosc()) {
             maxWprowadzona = liczbaA.getWartosc();
