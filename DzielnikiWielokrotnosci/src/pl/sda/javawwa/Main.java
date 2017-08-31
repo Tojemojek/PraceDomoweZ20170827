@@ -5,6 +5,7 @@ import pl.sda.javawwa.model.RozlozoneNaCzynnikiPierwsze;
 import pl.sda.javawwa.service.CzynnikiPierwsze;
 import pl.sda.javawwa.service.Nwd;
 import pl.sda.javawwa.service.Nww;
+import pl.sda.javawwa.service.ReadIntegerFromTerminal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,17 @@ public class Main {
         Integer maxWprowadzona = null;
         Nwd ndw = new Nwd();
         Nww nww = new Nww();
+
         Integer ndwTemp;
         Long nwwTemp;
+        Integer tmpLiczba1, tmpLiczba2;
         Integer liczPierszeDo = null;
 
-        RozlozoneNaCzynnikiPierwsze liczbaA = new RozlozoneNaCzynnikiPierwsze(165516513);
-        RozlozoneNaCzynnikiPierwsze liczbaB = new RozlozoneNaCzynnikiPierwsze(165161656);
+        tmpLiczba1= ReadIntegerFromTerminal.readOneLineWithComment("pierwszą");
+        tmpLiczba2= ReadIntegerFromTerminal.readOneLineWithComment("drugą");
+
+        RozlozoneNaCzynnikiPierwsze liczbaA = new RozlozoneNaCzynnikiPierwsze(tmpLiczba1);
+        RozlozoneNaCzynnikiPierwsze liczbaB = new RozlozoneNaCzynnikiPierwsze(tmpLiczba2);
 
         if (liczbaA.getWartosc() > liczbaB.getWartosc()) {
             maxWprowadzona = liczbaA.getWartosc();
