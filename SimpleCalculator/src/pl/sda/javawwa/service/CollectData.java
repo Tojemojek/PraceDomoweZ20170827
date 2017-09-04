@@ -5,19 +5,16 @@ import java.util.Scanner;
 public class CollectData {
 
     private Scanner scanner = new Scanner(System.in);
-    private String scannerData;
     private String[] dataCollector = new String[3];
 
     public void setData(int pos) {
-        do {
-            scannerData = scanner.nextLine();
-        }
-        while (scannerData == null);
-        dataCollector[pos] = scannerData.replaceAll(",",".");
+        String scannerData = scanner.nextLine();
+
+        dataCollector[pos] = (scannerData != null) ? scannerData.replaceAll(",", ".") : null;
     }
 
-    public String getDataCollector(Integer nr) {
-        return dataCollector[nr];
+    public String[] getDataCollector() {
+        return dataCollector;
     }
 
     @Override

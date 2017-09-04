@@ -13,7 +13,7 @@ public class DisplayMessages {
                     "+ (dodawanie), - (odejmowanie)\n" +
                     "* (mnożenie), / (dzielenie - ale nie przez zero)\n" +
                     "^ (potęgowanie - z wykładnikiem całkowitym nieujemnym)\n" +
-                    "? (pierwiastkowanie - stopnia całkowitego większego od zera)\n" +
+                    "? (pierwiastkowanie - z liczb dodatnich stopnia całkowitego większego od zera)\n" +
                     "q (aby wyjść)";
 
     public static String warningMessage = "Podane przez Ciebie dane są nieprawidłowe!";

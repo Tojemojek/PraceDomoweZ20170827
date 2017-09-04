@@ -1,32 +1,24 @@
 package pl.sda.javawwa.service;
 
-import pl.sda.javawwa.model.DisplayMessages;
-import pl.sda.javawwa.model.InputData;
 import pl.sda.javawwa.model.Operations;
-
-import java.util.List;
 
 public class ValidateData {
 
     private Operations opetatorsName = null;
     private Double[] tmpNumbers = new Double[2];
-    private CollectData localCollecData;
 
-    public Boolean validator(CollectData collectData, List<InputData> inputDataList) {
-        this.localCollecData = collectData;
+    public Boolean validator(CollectData collectData) {
+
 
         Boolean correctFirstNumber, correctSecondNumber, correctOperator;
 
-        correctOperator = validateOperator(collectData.getDataCollector(1));
-        correctFirstNumber = validateFirstNumber(collectData.getDataCollector(0));
-        correctSecondNumber = validateSecondNumber(collectData.getDataCollector(2));
+        correctOperator = validateOperator(collectData.getDataCollector()[Operations.OPERATOR]);
+        correctFirstNumber = validateFirstNumber(collectData.getDataCollector()[Operations.LICZBA_1]);
+        correctSecondNumber = validateSecondNumber(collectData.getDataCollector()[Operations.LICZBA_2]);
 
         if (correctFirstNumber && correctOperator && correctSecondNumber) {
-            inputDataList.add(new InputData(tmpNumbers[0], tmpNumbers[1], opetatorsName));
             return true;
         } else {
-            System.out.println(DisplayMessages.incorrectData);
-            System.out.println(localCollecData);
             return false;
         }
     }
@@ -42,6 +34,7 @@ public class ValidateData {
         return false;
     }
 
+
     private Boolean validateIfDouble(String maybeNumber, int posNumber) {
         Double tmpNumber;
         try {
@@ -53,58 +46,76 @@ public class ValidateData {
         }
     }
 
+    private Boolean validateIfNotNegativeDouble(String maybeNumber, int posNumber) {
+        if (validateIfDouble(maybeNumber, posNumber)) {
+            if (tmpNumbers[posNumber] > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private Boolean validateIfInteger(String maybeNumber, int posNumber) {
+        if (validateIfDouble(maybeNumber, posNumber)) {
+            if (Math.floor(tmpNumbers[posNumber]) == tmpNumbers[posNumber]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean validateIfNotZero(String maybeNumber, int posNumber) {
+        if (validateIfDouble(maybeNumber, posNumber)) {
+            if (tmpNumbers[posNumber] != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private Boolean validateIfNotNegativeInteger(String maybeNumber, int posNumber) {
+        if (validateIfInteger(maybeNumber, posNumber)) {
+            if (tmpNumbers[posNumber] >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean validateIfPositiveInteger(String maybeNumber, int posNumber) {
+        if (validateIfInteger(maybeNumber, posNumber)) {
+            if (tmpNumbers[posNumber] > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     private Boolean validateFirstNumber(String maybeNumber) {
-        if (validateIfDouble(maybeNumber, 0)) {
+        if (validateIfDouble(maybeNumber, Operations.LICZBA_1)) {
             switch (opetatorsName) {
                 case ROOT:
-                    return validateRootNumber(tmpNumbers[0]);
+                    return validateIfNotNegativeDouble(maybeNumber, Operations.LICZBA_1);
             }
             return true;
         } else return false;
     }
-
 
     private Boolean validateSecondNumber(String maybeNumber) {
-        if (validateIfDouble(maybeNumber, 1)) {
+        if (validateIfDouble(maybeNumber, Operations.LICZBA_2)) {
             switch (opetatorsName) {
                 case DIVIDE:
-                    return validateDivisionByzero(tmpNumbers[1]);
+                    return validateIfNotZero(maybeNumber, Operations.LICZBA_2);
                 case POWER:
-                    return validatePower(tmpNumbers[1]);
+                    return validateIfNotNegativeInteger(maybeNumber, Operations.LICZBA_2);
                 case ROOT:
-                    return validateRootDegree(tmpNumbers[1]);
+                    return validateIfPositiveInteger(maybeNumber, Operations.LICZBA_2);
             }
             return true;
         } else return false;
-    }
-
-
-    private Boolean validateDivisionByzero(Double tmp) {
-        if (tmp.equals(0D)) {
-            return false;
-        }
-        return true;
-    }
-
-    private Boolean validatePower(Double tmp) {
-        if (tmp < 0 || tmp != Math.floor(tmp)) {
-            return false;
-        }
-        return true;
-    }
-
-    private Boolean validateRootDegree(Double tmp) {
-        if (tmp <= 0 || tmp != Math.floor(tmp)) {
-            return false;
-        }
-        return true;
-    }
-
-    private Boolean validateRootNumber(Double tmp) {
-        if (tmp <= 0) {
-            return false;
-        }
-        return true;
     }
 
 }
