@@ -1,34 +1,43 @@
 package pl.sda.javawwa.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Shape {
 
     private ShapeNames name;
-    private Double[] sizes = new Double[4];
+    private List<Double> sizes = new ArrayList<>();
+    private Double surfaceArea;
     private String opis;
 
-    public Shape(ShapeNames name, Double[] sizes) {
-        this.sizes = sizes;
+    public Shape(ShapeNames name, List<Double> sizes) {
         this.name = name;
-    }
-
-    public Double getSizes(Integer sizePosition) {
-        return sizes[sizePosition];
-    }
-
-    public void setSurfaceArea(Double surfaceArea) {
-        sizes[4] = surfaceArea;
+        this.sizes = sizes;
     }
 
     public ShapeNames getName() {
         return name;
     }
 
+    public List<Double> getSizes() {
+        return sizes;
+    }
+
+    public Double getSurfaceArea() {
+        return surfaceArea;
+    }
+
+    public void setSurfaceArea(Double surfaceArea) {
+        this.surfaceArea = surfaceArea;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
     public void setOpis(String opis) {
         this.opis = opis;
     }
 
-    @Override
-    public String toString() {
-        return opis;
-    }
+
 }

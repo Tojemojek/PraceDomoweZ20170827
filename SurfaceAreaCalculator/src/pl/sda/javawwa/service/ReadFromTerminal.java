@@ -7,11 +7,10 @@ public class ReadFromTerminal {
     private Scanner scanner = new Scanner(System.in);
 
     public String readOneLine() {
+
         String scannerData;
-        do {
-            scannerData = scanner.nextLine().replaceAll(",",".");
-        }
-        while (scannerData == null);
-        return scannerData;
+        scannerData = scanner.nextLine();
+
+        return (scannerData != null) ? scannerData.replaceAll(",", ".") : null;
     }
 }

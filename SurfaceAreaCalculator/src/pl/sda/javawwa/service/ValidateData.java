@@ -1,8 +1,8 @@
 package pl.sda.javawwa.service;
 
-public class ValidateData {
+import pl.sda.javawwa.model.ShapeNames;
 
-    private final Integer ERRROR_CODE = -1;
+public class ValidateData {
 
 
     public Boolean shouldIContinue(String validowane) {
@@ -12,29 +12,28 @@ public class ValidateData {
         return true;
     }
 
-    public Integer validateChosenOption(String validowane) {
+    public Boolean validateChosenOption(String validowane) {
         Integer tmp;
-
         try {
             tmp = Integer.parseInt(validowane);
-            if (tmp > 5) {
-                return ERRROR_CODE;
+            if (tmp > ShapeNames.values().length - 1 && tmp < 0) {
+                return false;
             } else
-                return tmp;
+                return true;
         } catch (NumberFormatException e) {
-            return ERRROR_CODE;
+            return false;
         }
     }
 
-    public Double validateDimension(String validowane) {
+    public Boolean validateIfPositiveDouble(String validowane) {
         Double tmp;
         try {
             tmp = Double.parseDouble(validowane);
             if (tmp > 0D) {
-                return tmp;
-            } else return (double) ERRROR_CODE;
+                return true;
+            } else return false;
         } catch (NumberFormatException e) {
-            return (double) ERRROR_CODE;
+            return false;
         }
     }
 }

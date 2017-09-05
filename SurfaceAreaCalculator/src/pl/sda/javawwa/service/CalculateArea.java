@@ -7,74 +7,59 @@ public class CalculateArea {
     private Double calculatedsurfaceArea = null;
     private String tmpString;
 
-    public void calculateTrojkatArea(Shape localShape) {
-        calculatedsurfaceArea = localShape.getSizes(0)
-                * localShape.getSizes(1)
-                * localShape.getSizes(2);
-        localShape.setSurfaceArea(calculatedsurfaceArea);
-        tmpString = String.format("Twój trójkąt o podstawie %f i wysokości %f ma pole powierzchni %f",
-                localShape.getSizes(0),
-                localShape.getSizes(1),
-                localShape.getSizes(4));
-        localShape.setOpis(tmpString);
+
+    public void calculateAndSetAreaAndDescription(Shape shape) {
+
+        switch (shape.getName()) {
+            case TROJKAT:
+            case ROMB:
+                shape.setSurfaceArea(multiplyAllShapeDimensions(shape) * 0.5);
+                break;
+            case KWADRAT:
+                shape.setSurfaceArea(multiplyAllShapeDimensions(shape) * multiplyAllShapeDimensions(shape));
+                break;
+            case PROSTOKAT:
+            case ROWNOLEGLOBOK:
+                shape.setSurfaceArea(multiplyAllShapeDimensions(shape));
+                break;
+            case TRAPEZ:
+                shape.setSurfaceArea(calculateTrapezArea(shape));
+                break;
+        }
+        shape.setOpis(makeStringFromDimensionsAndShapeNames(shape));
     }
 
-    public void calculateKwadratArea(Shape localShape) {
-        calculatedsurfaceArea = localShape.getSizes(0)
-                * localShape.getSizes(0);
-        localShape.setSurfaceArea(calculatedsurfaceArea);
-        tmpString = String.format("Twój kwadrat o boku %f ma pole powierzchni %f",
-                localShape.getSizes(0),
-                localShape.getSizes(4));
-        localShape.setOpis(tmpString);
+    private Double multiplyAllShapeDimensions(Shape shape) {
+        Double dblTmp = 1D;
+
+        for (Double dbl : shape.getSizes()) {
+            dblTmp = dblTmp * dbl;
+        }
+        return dblTmp;
     }
 
-    public void calculateProstokatArea(Shape localShape) {
-        calculatedsurfaceArea = localShape.getSizes(0)
-                * localShape.getSizes(1);
-        localShape.setSurfaceArea(calculatedsurfaceArea);
-        tmpString = String.format("Twój prostokąt o bokach %f i %f ma pole powierzchni %f",
-                localShape.getSizes(0),
-                localShape.getSizes(1),
-                localShape.getSizes(4));
-        localShape.setOpis(tmpString);
+
+    private Double calculateTrapezArea(Shape shape) {
+        Double tmp = 0D;
+
+        tmp = (shape.getSizes().get(0) + shape.getSizes().get(1))
+                * shape.getSizes().get(2) * 0.5;
+        return tmp;
+
     }
 
-    public void calculateRownoleglobokArea(Shape localShape) {
-        calculatedsurfaceArea = localShape.getSizes(0)
-                * localShape.getSizes(1);
-        localShape.setSurfaceArea(calculatedsurfaceArea);
-        tmpString = String.format("Twój rownoległobok o podstawie %f i wysokości %f ma pole powierzchni %f",
-                localShape.getSizes(0),
-                localShape.getSizes(1),
-                localShape.getSizes(4));
-        localShape.setOpis(tmpString);
+
+    private String makeStringFromDimensionsAndShapeNames(Shape shape) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        sb.append(shape.getName().getName());
+        sb.append("\n").append(shape.getName().getEquation()).append("\n");
+        for (int i = 0; i < shape.getName().getDataPointsNames().size(); i++) {
+            sb.append("o długości ").append(shape.getName().getDataPointsNames().get(i)).append(" = ").append(shape.getSizes().get(i)).append(", ");
+        }
+        sb.append("ma powierzchnię ").append(shape.getSurfaceArea());
+        return sb.toString();
     }
 
-    public void calculateTrapezArea(Shape localShape) {
-        calculatedsurfaceArea =
-                (localShape.getSizes(0) + localShape.getSizes(1))
-                        * localShape.getSizes(2)
-                        * localShape.getSizes(3);
-        localShape.setSurfaceArea(calculatedsurfaceArea);
-        tmpString = String.format("Twój trapez o podstawach %f i %f oraz wysokości %f ma pole powierzchni %f",
-                localShape.getSizes(0),
-                localShape.getSizes(1),
-                localShape.getSizes(2),
-                localShape.getSizes(4));
-        localShape.setOpis(tmpString);
-    }
-
-    public void calculateRombArea(Shape localShape) {
-        calculatedsurfaceArea = localShape.getSizes(0)
-                * localShape.getSizes(1)
-                * localShape.getSizes(2);
-        localShape.setSurfaceArea(calculatedsurfaceArea);
-        tmpString = String.format("Twój romb o przekątnych %f i %f ma pole powierzchni %f",
-                localShape.getSizes(0),
-                localShape.getSizes(1),
-                localShape.getSizes(4));
-        localShape.setOpis(tmpString);
-    }
 
 }
