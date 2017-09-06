@@ -21,7 +21,11 @@ public class Main {
         Boolean shouldIContinue = true;
         ReadFromTerminal readFromTerminal= new ReadFromTerminal();
 
+
+
+
         do {
+
             makeShape.takeDataFromTerminalAndAddNewShapeToList(shapes);
 
             //czemu przy każdym przejściu czyta mi wszystkie kształty!!!

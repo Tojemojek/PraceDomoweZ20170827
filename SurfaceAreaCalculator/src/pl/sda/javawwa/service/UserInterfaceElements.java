@@ -10,15 +10,16 @@ public class UserInterfaceElements {
         }
     }
 
-    public static void displayWrongShapeChosenMessage(){
+    public static void displayWrongShapeChosenMessage() {
         System.out.println("Podany numer figury jest nieprawidłowy, wybierz jeszcze raz");
         displayChooseShapeMessage();
     }
 
-    public static void displayShouldIContinueMessage(){
+    public static void displayShouldIContinueMessage() {
         System.out.println("Jeśli chcesz kontynuować naciśnij dowolny klawisz poza q");
     }
-    public static void displayByeByeMessage(){
+
+    public static void displayByeByeMessage() {
         System.out.println("Dziękuję za obliczenia!\nTwoje poprzednie obliczenia to:");
     }
 

@@ -1,21 +1,20 @@
 package pl.sda.javawwa.service;
 
-import pl.sda.javawwa.model.RozlozoneNaCzynnikiPierwsze;
+import pl.sda.javawwa.model.RozbitaLiczba;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Nwd {
 
-    private Integer wartoscA;
-    private Integer wartoscB;
-    private List<Integer> czynnikiPierwszeA = new ArrayList<>();
-    private List<Integer> czynnikiPierwszeB = new ArrayList<>();
     private Integer nwd = 1;
 
-
-    public Integer nwdFinder(RozlozoneNaCzynnikiPierwsze a, RozlozoneNaCzynnikiPierwsze b) {
+    public Integer nwdFinder(RozbitaLiczba a, RozbitaLiczba b) {
         Integer tmpIndex;
+        Integer wartoscA;
+        Integer wartoscB;
+        List<Integer> czynnikiPierwszeA = new ArrayList<>();
+        List<Integer> czynnikiPierwszeB = new ArrayList<>();
 
         if (a.getCzynnikiPierwsze().size() > b.getCzynnikiPierwsze().size()) {
             wartoscA = a.getWartosc();

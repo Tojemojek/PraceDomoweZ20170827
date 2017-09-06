@@ -16,7 +16,7 @@ public class ValidateData {
         Integer tmp;
         try {
             tmp = Integer.parseInt(validowane);
-            if (tmp > ShapeNames.values().length - 1 && tmp < 0) {
+            if (tmp > ShapeNames.values().length - 1 || tmp < 0) {
                 return false;
             } else
                 return true;

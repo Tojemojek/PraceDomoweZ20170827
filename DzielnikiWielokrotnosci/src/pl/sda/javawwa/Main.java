@@ -1,7 +1,7 @@
 package pl.sda.javawwa;
 
 import pl.sda.javawwa.model.LiczbyPierwszeSitemErastotenesa;
-import pl.sda.javawwa.model.RozlozoneNaCzynnikiPierwsze;
+import pl.sda.javawwa.model.RozbitaLiczba;
 import pl.sda.javawwa.service.CzynnikiPierwsze;
 import pl.sda.javawwa.service.Nwd;
 import pl.sda.javawwa.service.Nww;
@@ -14,7 +14,6 @@ public class Main {
 
     private static List<Integer> liczbyPierwsze = new ArrayList<>();
 
-
     public static void main(String[] args) {
         Integer maxWprowadzona = null;
         Nwd ndw = new Nwd();
@@ -22,23 +21,25 @@ public class Main {
 
         Integer ndwTemp;
         Long nwwTemp;
+
         Integer tmpLiczba1, tmpLiczba2;
         Integer liczPierszeDo = null;
 
         tmpLiczba1= ReadIntegerFromTerminal.readOneLineWithComment("pierwszą");
         tmpLiczba2= ReadIntegerFromTerminal.readOneLineWithComment("drugą");
 
-        RozlozoneNaCzynnikiPierwsze liczbaA = new RozlozoneNaCzynnikiPierwsze(tmpLiczba1);
-        RozlozoneNaCzynnikiPierwsze liczbaB = new RozlozoneNaCzynnikiPierwsze(tmpLiczba2);
+        RozbitaLiczba liczbaA = new RozbitaLiczba(tmpLiczba1);
+        RozbitaLiczba liczbaB = new RozbitaLiczba(tmpLiczba2);
 
         if (liczbaA.getWartosc() > liczbaB.getWartosc()) {
             maxWprowadzona = liczbaA.getWartosc();
         } else maxWprowadzona = liczbaB.getWartosc();
+
         liczPierszeDo = maxWprowadzona/2;
 
         LiczbyPierwszeSitemErastotenesa.liczbyPierwsze(liczPierszeDo, liczbyPierwsze);
 
-        CzynnikiPierwsze.znajdzCzynnikiPierwsze(liczbaA, liczbaB, liczbyPierwsze);
+        CzynnikiPierwsze.ustawCzynnikiPierwszePodanychLiczb(liczbaA, liczbaB, liczbyPierwsze);
 
         System.out.println(String.format("Czynniki pierwsze liczby %d",liczbaA.getWartosc()));
         System.out.println(liczbaA.getCzynnikiPierwsze());

@@ -3,12 +3,12 @@ package pl.sda.javawwa.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RozlozoneNaCzynnikiPierwsze {
+public class RozbitaLiczba {
 
     private Integer wartosc;
     private List<Integer> czynnikiPierwsze = new ArrayList<>();
 
-    public RozlozoneNaCzynnikiPierwsze(Integer wartosc) {
+    public RozbitaLiczba(Integer wartosc) {
         this.wartosc = wartosc;
     }
 
